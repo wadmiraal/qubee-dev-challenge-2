@@ -4,18 +4,15 @@ import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
+import org.slf4j.Logger;
 
 public class Emulator {
 
-  private static void executeInstruction(String instruction, Map<String, Character> register) {
-    // parse instruction
-    // * split operator and operands
-    // * find operator handler
-    // * load operand value
-    // * execute operation
-
-    // execute on register
-    // * store value
+  private static final Logger logger = org.slf4j.LoggerFactory.getLogger(Emulator.class);
+  public static void executeInstruction(String instruction, Map<String, Character> register) {
+    logger.atInfo().log("instruction: {}", instruction);
+    Operators.applyInstruction(instruction, register);
   }
 
   public enum Operators {
@@ -61,17 +58,22 @@ public class Emulator {
 
     private void apply(String instruction, Map<String, Character> register) {
       Matcher matcher = pattern.matcher(instruction);
-      assert matcher.matches();
+      assert matcher.find();
 
       int nbOperand = matcher.groupCount();
-      char[] operands = new char[nbOperand];
+      String[] operands = new String[nbOperand];
       for (int i = 0; i < nbOperand; i++) {
-        //operands[i] = matcher.group(i + 1);
+        operands[i] = matcher.group(i + 1);
       }
+      handler.accept(operands, register);
     }
 
     public static void applyInstruction(String instruction, Map<String, Character> register) {
-
+      Stream.of(Operators.values())
+        .filter(op -> op.matches(instruction))
+        .findFirst()
+        .orElseThrow(() -> new IllegalArgumentException("Unknown operator"))
+        .apply(instruction, register);
     }
   }
 }

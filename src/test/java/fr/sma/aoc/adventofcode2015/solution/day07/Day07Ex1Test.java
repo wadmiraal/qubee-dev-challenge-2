@@ -21,5 +21,4 @@ class Day07Ex1Test {
     String result = day07Ex1.run(input);
     assertEquals("72", result);
   }
-
 }
