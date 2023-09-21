@@ -19,23 +19,32 @@ public class Emulator {
   }
 
   public enum Operators {
-    AND(Pattern.compile(""), (operands, register) -> {
-
+    AND(Pattern.compile("(\\w+) AND (\\w+) -> (\\w+)"), (operands, register) -> {
+      char op0 = register.get(operands[0]);
+      char op1 = register.get(operands[1]);
+      register.put(operands[2], (char) (op0 & op1));
     }),
-    OR(Pattern.compile(""), (operands, register) -> {
-
+    OR(Pattern.compile("(\\w+) OR (\\w+) -> (\\w+)"), (operands, register) -> {
+      char op0 = register.get(operands[0]);
+      char op1 = register.get(operands[1]);
+      register.put(operands[2], (char) (op0 | op1));
     }),
-    NOT(Pattern.compile(""), (operands, register) -> {
-
+    NOT(Pattern.compile("NOT (\\w+) -> (\\w+)"), (operands, register) -> {
+      char op0 = register.get(operands[0]);
+      register.put(operands[1], (char) ~op0);
     }),
-    LSHIFT(Pattern.compile(""), (operands, register) -> {
-
+    LSHIFT(Pattern.compile("(\\w+) LSHIFT (\\d+) -> (\\w+)"), (operands, register) -> {
+      char op0 = register.get(operands[0]);
+      char op1 = (char) Integer.parseInt(operands[1]);
+      register.put(operands[2], (char) (op0 << op1));
     }),
-    RSHIFT(Pattern.compile(""), (operands, register) -> {
-
+    RSHIFT(Pattern.compile("(\\w+) RSHIFT (\\d+) -> (\\w+)"), (operands, register) -> {
+      char op0 = register.get(operands[0]);
+      char op1 = (char) Integer.parseInt(operands[1]);
+      register.put(operands[2], (char) (op0 >> op1));
     }),
-    ASSIGN(Pattern.compile(""), (operands, register) -> {
-
+    ASSIGN(Pattern.compile("(\\d+) -> (\\w+)"), (operands, register) -> {
+      register.put(operands[1], (char) Integer.parseInt(operands[0]));
     });
 
     Operators(Pattern pattern, BiConsumer<String[], Map<String, Character>> handler) {
