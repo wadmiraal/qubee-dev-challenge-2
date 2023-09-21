@@ -18,6 +18,7 @@ public class Day01Ex1 implements ExSolution {
   @Override
   public String run(String input) throws Exception {
     logger.atInfo().log("input: {}", input);
-    return input;
+    Long result = input.chars().filter(ch -> ch == '(').count() - input.chars().filter(ch -> ch == ')').count();
+    return result.toString();
   }
 }
