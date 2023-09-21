@@ -39,7 +39,7 @@ public class DataFetcher {
     HttpClient httpClient = HttpClient.newBuilder().build();
 
     HttpRequest httpRequest = HttpRequest.newBuilder()
-      .uri(URI.create("https://adventofcode.com/2022/day/" + day + "/input"))
+      .uri(URI.create("https://adventofcode.com/2015/day/" + day + "/input"))
       .header("Cookie", cookie)
       .GET()
       .build();
