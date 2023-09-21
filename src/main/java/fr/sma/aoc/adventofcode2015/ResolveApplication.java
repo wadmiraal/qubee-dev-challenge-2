@@ -1,4 +1,4 @@
-package fr.sma.aoc.adventofcode2022;
+package fr.sma.aoc.adventofcode2015;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

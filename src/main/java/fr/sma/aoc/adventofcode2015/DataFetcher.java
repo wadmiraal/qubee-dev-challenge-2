@@ -1,4 +1,4 @@
-package fr.sma.aoc.adventofcode2022;
+package fr.sma.aoc.adventofcode2015;
 
 import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;

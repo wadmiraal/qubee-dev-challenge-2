@@ -1,7 +1,7 @@
-package fr.sma.aoc.adventofcode2022.solution.day01;
+package fr.sma.aoc.adventofcode2015.solution.day01;
 
-import fr.sma.aoc.adventofcode2022.ExSolution;
-import fr.sma.aoc.adventofcode2022.ResolveApplication;
+import fr.sma.aoc.adventofcode2015.ExSolution;
+import fr.sma.aoc.adventofcode2015.ResolveApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
