@@ -2,26 +2,26 @@ package fr.sma.aoc.adventofcode2015.solution.day10;
 
 import fr.sma.aoc.adventofcode2015.ExSolution;
 import fr.sma.aoc.adventofcode2015.ResolveApplication;
-import fr.sma.aoc.adventofcode2015.solution.day03.Day03Ex1;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 
 @Component
-public class Day10Ex1 implements ExSolution {
+public class Day10Ex2 implements ExSolution {
 
-    Logger logger = LoggerFactory.getLogger(Day10Ex1.class);
+
+    Logger logger = LoggerFactory.getLogger(Day10Ex2.class);
 
     public static void main(String[] args) {
-        ResolveApplication.main(new String[]{"10", "1"});
+        ResolveApplication.main(new String[]{"10", "2"});
     }
 
     @Override
     public String run(String input) {
         logger.info("Puzzle input: {}", input);
-        String result = input;
-        for (int i = 0; i < 40; i++) {
+        String result = input.trim();
+        for (int i = 0; i < 50; i++) {
             result = transforms(result);
             logger.info("Iteration {}, result: {}", i+1, result.length());
         }
