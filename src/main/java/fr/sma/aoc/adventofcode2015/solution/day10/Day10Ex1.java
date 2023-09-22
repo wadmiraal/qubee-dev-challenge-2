@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Day10Ex1 implements ExSolution {
 
+
     Logger logger = LoggerFactory.getLogger(Day10Ex1.class);
 
     public static void main(String[] args) {
@@ -19,11 +20,9 @@ public class Day10Ex1 implements ExSolution {
 
     @Override
     public String run(String input) {
-        logger.info("Puzzle input: {}", input);
-        String result = input;
+        String result = input.trim();
         for (int i = 0; i < 40; i++) {
             result = transforms(result);
-            logger.info("Iteration {}, result: {}", i+1, result.length());
         }
         logger.info("" + result.length());
         return "" + result.length();
